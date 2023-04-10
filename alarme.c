@@ -1,22 +1,24 @@
 // Alarme
+//A linguagem C é uma linguagem de programação de alto nível, desenvolvida para escrever sistemas operacionais, compiladores e outras aplicações de baixo nível, que requerem controle direto do hardware do computador.
 //=============================================================================================================================================================================//
-#include <LiquidCrystal.h> // uma biblioteca para contrar um display LCD
-#define Buzzer A0 //é oq vai dizer se o alarme está desligado ou ligado (A0)= porta
-#define Atuador 12 // é oq vai detectar que a porta foi aberta (12)=porta digital 
-#define Sirene A4 //o relé vai acionar a sirene na porta (A4), vou mandar nivel baixo, vou acionar o relé, com isso vou acionar a sirene.
+#include <LiquidCrystal.h> // Essa biblioteca é usada para controlar displays LCD
+#define Buzzer A0 //Buzzer é um dispositivo eletrônico que produz som ou ruído, é oq vai dizer se o alarme está desligado ou ligado (A0)= porta
+#define Atuador 12 //Atuador é um componente ou dispositivo que converte energia em movimento, é oq vai detectar que a porta foi aberta (12)=porta digital 
+#define Sirene A4 //o relé vai acionar a sirene na porta (A4), vou mandar nivel baixo, vai acionar o relé, com isso vou acionar a sirene.
 
-int Leitura = 0; //variável que vai ler 
+int Leitura = 0; //representar números inteiros, variável que vai ler 
 int x = 0;
 String Senha = "2551"; //é a nossa senha
 String Salvo; //
 String Dado;
 bool Alarme = false; // a variável que indica que o nosso alarme se inicial desligado 
-bool orta = false; // quando a porta estiver aberta, mesmo se fechar a porta ele vai continuar alarmando até continuar sua senha 
+bool Porta = false; // quando a porta estiver aberta, mesmo se fechar a porta,  ele vai continuar alarmando até colocar sua senha 
 
 
 LiquidCrystal lcd(7, 6, 5, 4, 3, 2); //iniciamos o nosso displya em ()são os pinos que utilizamos.
 
-void setup(){  // é usada para inicializar o hardware e definir as configurações iniciais do programa, é configurar as entradas e saídas.
+void setup(){  //void setup é uma função padrão na linguagem de programação Arduino, é usada para inicializar o programa e definir o comportamento de algumas configurações iniciais, como as configurações dos pinos de entrada/saída, comunicação serial, timers, entre outras,é usada para inicializar o hardware e definir as configurações iniciais do programa, é configurar as entradas e saídas.
+
   lcd.begin(16, 2); //configura o lcd para ficar no formado 16:2, mais utilizado e mais simples
   pinMode(Buzzer, OUTPUT); // uma saída
   pinMode(Sirene, OUTPUT); // uam saída
@@ -31,11 +33,11 @@ void setup(){  // é usada para inicializar o hardware e definir as configuraç�
   digitalWrite(Sirene,HIGH); //madando nivel alto para começar a sirene ligada
 //=============================================================================Configura a senha inicial=======================================================================//
   
-  lcd.clear(); //limpor o lcd
+  lcd.clear(); //limpou o lcd
   lcd.print("     Bem-vindo");  
 }
 void loop(){ //é executada continuamente em um loop infinito, até que o Arduino seja desligado ou o programa seja interrompido. é oq vai rodar o nosso programa o tempo todo!
-if(digitalRead(8)==LOW) { //precisso precionar o # no teclado, ai entrana função!, #se o alarme estiver ligado, aperto o #, chamo a função teclado matricial, vai verificar a senha, vai dar um bem-vindo, ele dar 3 bips para dizer quer o alarme está desligado
+if(digitalRead(8)==LOW) { // é uma função da linguagem de programação Arduino que é usada para ler o valor de um pino digital, precisso precionar o # no teclado, ai entrana função!, #se o alarme estiver ligado, aperto o #, chamo a função teclado matricial, vai verificar a senha, vai dar um bem-vindo, ele dar 3 bips para dizer quer o alarme está desligado
      delay(300);
      lcd.clear();
      lcd.pritn("     Bem-vindo");
@@ -61,7 +63,7 @@ if(digitalRead(8)==LOW) { //precisso precionar o # no teclado, ai entrana funç�
     delay(300);
     tone(Buzzer,1000,100);  //acionar novamente, vai dar 2 bips para dizer que o alarme está ligado.
     }
-    else iff(Salvo!=Senha){ //aqui vai digitar a senha novamente, antes disso ele vai continuar sempre fazendo a leitura 
+    else if(Salvo!=Senha){ //aqui vai digitar a senha novamente, antes disso ele vai continuar sempre fazendo a leitura 
     lcd.clear();
     lcd.print("     Bem-vindo");
     lcd.setCursor(0,1);
@@ -84,7 +86,7 @@ while(porta==true)
   lcd.print("Senha:"); // ai já printa uma mensagem para colocar de novo a senha 
   TecladoMatricial(); //aqui ele ta preso na função (tecladoMatricial), tem que colocar a senha para parar de tocar a sirene
 
-  if(Salvo==Senha){ //obs: toda vez que eu chamo a função tecladoi, eu limpo minha variável (Salvo). aqui ele vai verificar e se senha que colocou está certa,
+  if(Salvo==Senha){ //obs: toda vez que eu chamo a função teclado, eu limpo minha variável (Salvo). aqui ele vai verificar e se senha que colocou está certa,
   lcd.clear();
   lcd.print("Alarme desligado");
   digitalWrite(Sirene,HIGH); (HIGH) //sinal alto, ele manda sinal alto para o relé e ele desliga

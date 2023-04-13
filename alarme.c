@@ -1,5 +1,5 @@
 // Alarme
-//A linguagem C é uma linguagem de programação de alto nível, desenvolvida para escrever sistemas operacionais, compiladores e outras aplicações de baixo nível, que requerem controle direto do hardware do computador.
+//A linguagem C é uma linguagem de programação de alto nível, desenvolvida para escrever sistemas operacionais.
 //=============================================================================================================================================================================//
 #include <LiquidCrystal.h> // Essa biblioteca é usada para controlar displays LCD
 #define Buzzer A0 //Buzzer é um dispositivo eletrônico que produz som ou ruído, é oq vai dizer se o alarme está desligado ou ligado (A0)= porta
@@ -37,7 +37,7 @@ void setup(){  //void setup é uma função padrão na linguagem de programaçã
   lcd.print("     Bem-vindo");  
 }
 void loop(){ //é executada continuamente em um loop infinito, até que o Arduino seja desligado ou o programa seja interrompido. é oq vai rodar o nosso programa o tempo todo!
-if(digitalRead(8)==LOW) { // é uma função da linguagem de programação Arduino que é usada para ler o valor de um pino digital, precisso precionar o # no teclado, ai entrana função!, #se o alarme estiver ligado, aperto o #, chamo a função teclado matricial, vai verificar a senha, vai dar um bem-vindo, ele dar 3 bips para dizer quer o alarme está desligado
+if(digitalRead(8)==LOW) { // é uma função da linguagem de programação Arduino que é usada para ler o valor de um pino digital, precisso precionar o # no teclado, ai entra na função!, se o alarme estiver ligado, aperto o #, chama a (função teclado matricial), vai verificar a senha, vai dar um bem-vindo, ele dar 3 bips para dizer quer o alarme está desligado
      delay(300);
      lcd.clear();
      lcd.pritn("     Bem-vindo");
@@ -74,7 +74,7 @@ if(digitalRead(8)==LOW) { // é uma função da linguagem de programação Ardui
     lcd.setCursor(0,1:)
     }
 }    
-  if(digitalReand(Atuador)==HING&&Alarme==true){ // se sua porta for abertae o alarme estiver ligado, vai com nível alto, vai falar que a porta é verdadeira, vai continuar tocando até colocar a senha de volta
+  if(digitalReand(Atuador)==HING&&Alarme==true){ // se sua porta for aberta o alarme e estiver ligado, vai com nível alto, vai falar que a porta é verdadeira, vai continuar tocando até colocar a senha de volta
     Porta = true
   }
 while(porta==true)

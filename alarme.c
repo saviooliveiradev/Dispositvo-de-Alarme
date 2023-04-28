@@ -4,7 +4,7 @@
 #include <LiquidCrystal.h> // Essa biblioteca é usada para controlar displays LCD
 #define Buzzer A0 //Buzzer é um dispositivo eletrônico que produz som ou ruído, é oq vai dizer se o alarme está desligado ou ligado (A0)= porta
 #define Atuador 12 //Atuador é um componente ou dispositivo que converte energia em movimento, é oq vai detectar que a porta foi aberta (12)=porta digital 
-#define Sirene A4 //o relé vai acionar a sirene na porta (A4), vou mandar nivel baixo, vai acionar o relé, com isso vou acionar a sirene.
+#define Sirene A4 //o relé vai acionar a sirene na porta (A4), vou mandar nivel alto, vai acionar o relé, com isso vou acionar a sirene.
 
 int Leitura = 0; //representar números inteiros, variável que vai ler 
 int x = 0;
@@ -12,14 +12,14 @@ String Senha = "2551"; //é a nossa senha
 String Salvo; //
 String Dado;
 bool Alarme = false; // a variável que indica que o nosso alarme se inicial desligado 
-bool Porta = false; // quando a porta estiver aberta, mesmo se fechar a porta,  ele vai continuar alarmando até colocar sua senha 
+int Porta = false; // quando a porta estiver aberta, mesmo se fechar a porta,  ele vai continuar alarmando até colocar sua senha 
 
 
 LiquidCrystal lcd(7, 6, 5, 4, 3, 2); //iniciamos o nosso displya em ()são os pinos que utilizamos.
 
 void setup(){  //void setup é uma função padrão na linguagem de programação Arduino, é usada para inicializar o programa e definir o comportamento de algumas configurações iniciais, como as configurações dos pinos de entrada/saída, comunicação serial, timers, entre outras,é usada para inicializar o hardware e definir as configurações iniciais do programa, é configurar as entradas e saídas.
 
-  lcd.begin(16, 2); //configura o lcd para ficar no formado 16:2, mais utilizado e mais simples
+  lcd.begin(16, 2); //configura o lcd para ficar na proporção de tela 16:2, mais utilizado e mais simples
   pinMode(Buzzer, OUTPUT); // uma saída
   pinMode(Sirene, OUTPUT); // uam saída
   pinMode(Atuador, INPUT_PULLUP); //uma entrada, quando a porta abre, ele vai receber o sinal
